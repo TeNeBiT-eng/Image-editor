@@ -7,7 +7,7 @@ const rotateOptions = document.querySelectorAll(".rotate button");
 const previewImg = document.querySelector(".preview-img img");
 const resetFilterBtn = document.querySelector(".reset-filter");
 const chooseImgBtn = document.getElementById("choose");
-const saveImgBtn = document.querySelector('.save-img');
+const saveImgBtn = document.querySelector(".save-img");
 
 let brightness = 100,
   saturation = 100,
@@ -106,25 +106,32 @@ const resetFilter = () => {
 };
 
 const saveImage = () => {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = previewImg.naturalWidth;
-    canvas.height = previewImg.naturalHeight;
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = previewImg.naturalWidth;
+  canvas.height = previewImg.naturalHeight;
+  canvas.style.display = "none";
 
-    ctx.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
-    ctx.translate(canvas.width / 2, canvas.height / 2)
-    if(rotate !== 0) {
-        ctx.rotate(rotate * Math.PI / 180);
-    }
-    ctx.scale(flipHorizontal, flipVertical);
-    ctx.drawImage(previewImg, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
-    document.body.appendChild(canvas);
+  ctx.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
+  ctx.translate(canvas.width / 2, canvas.height / 2);
+  if (rotate !== 0) {
+    ctx.rotate((rotate * Math.PI) / 180);
+  }
+  ctx.scale(flipHorizontal, flipVertical);
+  ctx.drawImage(
+    previewImg,
+    -canvas.width / 2,
+    -canvas.height / 2,
+    canvas.width,
+    canvas.height
+  );
+  document.body.appendChild(canvas);
 
-    const link = document.createElement('a');
-    link.download = 'image.jpg';
-    link.href = canvas.toDataURL();
-    link.click();
-}
+  const link = document.createElement("a");
+  link.download = "image.jpg";
+  link.href = canvas.toDataURL();
+  link.click();
+};
 
 fileInput.addEventListener("change", loadImage);
 filterSlider.addEventListener("input", updateFilter);

@@ -23,17 +23,17 @@
     />
   </head>
   <body>
-    <div class="container">
+    <div class="container disable">
       <h2>Easy Image Editor</h2>
       <div class="wrapper">
         <div class="editorpanel">
           <div class="filter">
             <label class="title">Filters</label>
             <div class="options">
-              <button class="active">Brightness</button>
-              <button>Saturation</button>
-              <button>Inversion</button>
-              <button>Grayscale</button>
+              <button id="brightness" class="active">Brightness</button>
+              <button id="saturation">Saturation</button>
+              <button id="inversion">Inversion</button>
+              <button id="grayscale">Grayscale</button>
             </div>
             <div class="slider">
               <div class="filter-info">
@@ -54,14 +54,21 @@
           </div>
         </div>
         <div class="preview-img">
-          <img src="./img/dummy_400x300_ffffff_cccccc_choose-image-to-edit.svg" alt="" />
+          <img src="./img/image-placeholder.svg" alt="" />
         </div>
       </div>
       <div class="controls">
         <button class="reset-filter">Reset Filters</button>
         <div class="row">
-            <button class="choose-img">Choose Image</button>
-            <button class="save-img">Save Image</button>
+          <input
+            type="file"
+            class="file-input"
+            id="file"
+            accept="image/*"
+            hidden
+          />
+          <button class="choose-img" id="choose">Choose Image</button>
+          <button class="save-img">Save Image</button>
         </div>
       </div>
     </div>

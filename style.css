@@ -93,6 +93,7 @@ h2 {
 .preview-img{
     margin-left: 20px;
     display: flex;
+    overflow: hidden;
     flex-grow: 1;
     align-items: center;
     justify-content: center;
